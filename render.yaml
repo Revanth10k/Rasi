@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: rasi
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: MODEL_PROVIDER
+        value: huggingface
+      - key: HF_TOKEN
+        sync: false
+      - key: HF_MODEL
+        value: HuggingFaceH4/zephyr-7b-beta
